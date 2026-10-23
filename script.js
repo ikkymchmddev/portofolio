@@ -1,6 +1,6 @@
 /**
- * Rizqi Muchamad Anafis (Ikky) - Portfolio Scripts
- * Handles UI interactions, themes, filters, animations, and modal details.
+ * Rizqi Muchamad Anafis (Ikky) - Skrip Portofolio
+ * Menangani interaksi UI, tema gelap/terang, filter keahlian, animasi angka, modal rincian proyek, dan formulir kontak.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =========================================================
-   1. Theme Toggle (Dark / Light)
+   1. Pengalih Tema (Gelap / Terang)
    ========================================================= */
 function initThemeToggle() {
   const themeBtn = document.getElementById('theme-toggle-btn');
   const html = document.documentElement;
   
-  // Check persisted or system theme
+  // Cek tema tersimpan di localStorage atau preferensi sistem operasi
   const savedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
@@ -36,13 +36,13 @@ function initThemeToggle() {
       const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
-      showToast(`Switched to ${newTheme} mode`);
+      showToast(`Beralih ke mode ${newTheme === 'dark' ? 'gelap' : 'terang'}`);
     });
   }
 }
 
 /* =========================================================
-   2. Mobile Navigation
+   2. Navigasi Mobile (Hamburger Menu)
    ========================================================= */
 function initMobileNav() {
   const toggleBtn = document.getElementById('mobile-toggle-btn');
@@ -67,7 +67,7 @@ function initMobileNav() {
 }
 
 /* =========================================================
-   3. Header Scroll Effect
+   3. Efek Gulir Header
    ========================================================= */
 function initHeaderScroll() {
   const header = document.getElementById('header');
@@ -83,7 +83,7 @@ function initHeaderScroll() {
 }
 
 /* =========================================================
-   4. Active Navigation on Scroll
+   4. Penanda Menu Aktif saat Halaman Digulir
    ========================================================= */
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
@@ -110,7 +110,7 @@ function initActiveNav() {
 }
 
 /* =========================================================
-   5. Skill Filtering
+   5. Filter Kategori Keahlian Teknis
    ========================================================= */
 function initSkillFilters() {
   const filterBtns = document.querySelectorAll('#skill-filters .filter-btn');
@@ -136,7 +136,7 @@ function initSkillFilters() {
 }
 
 /* =========================================================
-   6. Stat Counters Animation
+   6. Animasi Angka Statistik saat Terlihat
    ========================================================= */
 function initStatCounters() {
   const statsSection = document.getElementById('stats-grid');
@@ -164,7 +164,7 @@ function initStatCounters() {
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // easeOutQuad
+      // Kurva perlambatan halus (easeOutQuad)
       const easedProgress = 1 - (1 - progress) * (1 - progress);
       element.innerText = Math.floor(easedProgress * (end - start) + start);
       if (progress < 1) {
@@ -178,44 +178,44 @@ function initStatCounters() {
 }
 
 /* =========================================================
-   7. Project Modals & Details
+   7. Modal Rincian Proyek (Bahasa Indonesia)
    ========================================================= */
 const PROJECT_DETAILS = {
   padi: {
-    title: 'PADI: Regional Infrastructure Reporting System',
-    category: 'Enterprise / Municipal Infrastructure',
-    description: 'PADI is a comprehensive civic incident management platform connecting citizens directly with public works authorities. Built to process geolocated hazard reports with real-time triage, image verification, and automated municipal routing.',
+    title: 'PADI: Sistem Pelaporan Infrastruktur Daerah',
+    category: 'Layanan Publik / Smart City',
+    description: 'PADI adalah platform manajemen pengaduan masyarakat secara langsung kepada dinas infrastruktur pemerintah daerah. Dirancang untuk memproses laporan kerusakan jalan dan fasilitas umum lengkap dengan koordinat geolokasi presisi, unggahan media verifikasi, dan alur disposisi dinas otomatis.',
     highlights: [
-      'Interactive mapping with geo-clustering using Mapbox GL',
-      'Automated SLA calculation and public works team dispatch',
-      'End-to-end audit trails for public accountability',
-      'PostgreSQL database optimized with spatial PostGIS queries'
+      'Peta interaktif berbasis Mapbox GL dengan kemampuan clustering titik laporan',
+      'Kalkulasi SLA penanganan otomatis dan dispatch langsung ke petugas lapangan',
+      'Riwayat audit laporan publik yang transparan dan dapat dipantau pelapor',
+      'Optimasi database PostgreSQL dengan ekstensi spasial PostGIS'
     ],
     tech: ['Next.js 14', 'Node.js', 'PostgreSQL', 'Mapbox GL', 'Docker', 'TailwindCSS'],
     repo: 'https://github.com/ikkymchmddev'
   },
   webclip: {
-    title: 'WebClip: Intelligent Content Clipper & Summarizer',
-    category: 'AI Tooling & Developer Productivity',
-    description: 'WebClip is an automated knowledge extraction system. It strips boilerplate DOM trees from web articles and uses LLM models to extract bullet summaries, key takeaways, and action items, synchronizing to markdown notes instantly.',
+    title: 'WebClip: Peringkas & Kliping Konten Cerdas Berbasis AI',
+    category: 'AI & Alat Produktivitas Developer',
+    description: 'WebClip adalah sistem ekstraksi dan sintesis artikel berbasis kecerdasan buatan. Membersihkan format halaman web dari iklan atau elemen yang mengganggu, lalu memanfaatkan model LLM mutakhir untuk menyajikan poin-poin intisari, ringkasan eksekutif, dan sinkronisasi ke catatan digital.',
     highlights: [
-      'Sub-2-second article extraction and markdown formatting',
-      'Configurable LLM prompts with token streaming support',
-      'Client-side storage with encrypted sync options',
-      'Clean keyboard-first user interface'
+      'Proses ekstraksi teks dan format Markdown bersih dalam waktu di bawah 2 detik',
+      'Prompt LLM yang dapat dikonfigurasi dengan dukungan streaming respons',
+      'Penyimpanan lokal di browser dengan opsi enkripsi data pengguna',
+      'Desain antarmuka minimalis dengan dukungan navigasi cepat keyboard'
     ],
     tech: ['TypeScript', 'FastAPI', 'Python', 'Gemini API', 'IndexedDB'],
     repo: 'https://github.com/ikkymchmddev'
   },
   accelerator: {
     title: 'AI Accelerator Integration Hub',
-    category: 'Production Backend & Cloud Architecture',
-    description: 'A high-throughput API gateway designed to orchestrate AI inference across heterogeneous LLM endpoints. Features robust multi-tenant token billing, fallback routing, and distributed Redis response caching.',
+    category: 'Produksi Backend & Arsitektur Cloud',
+    description: 'Middleware backend berperforma tinggi untuk mengorkestrasi inferensi kecerdasan buatan di berbagai penyedia model LLM. Dilengkapi sistem multi-tenant token billing, peralihan otomatis jika terjadi gangguan penyedia (failover routing), dan caching respons dengan Redis.',
     highlights: [
-      'Reduced average endpoint latency by 45% via aggressive caching',
-      'Automatic failover switching during provider outages',
-      'Detailed telemetry dashboards with per-request latency tracking',
-      'Containerized deployment with zero-downtime updates'
+      'Memangkas rata-rata waktu respons API hingga 45% berkat sistem caching agresif',
+      'Peralihan otomatis tanpa downtime saat salah satu penyedia AI mengalami kendala',
+      'Telemetri mendalam dengan pemantauan metrik latensi per permintaan (Prometheus)',
+      'Arsitektur microservices berbasis kontainer Docker dengan skalabilitas elastis'
     ],
     tech: ['Node.js', 'Express', 'Redis', 'Docker', 'Prometheus', 'Jest'],
     repo: 'https://github.com/ikkymchmddev'
@@ -241,7 +241,7 @@ function initProjectModals() {
         <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 16px; color: var(--text-primary);">${data.title}</h3>
         <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">${data.description}</p>
         
-        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Key Architectural Highlights:</h4>
+        <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 10px;">Sorotan Arsitektur & Fitur Utama:</h4>
         <ul style="list-style: disc; margin-left: 20px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">
           ${data.highlights.map(h => `<li style="margin-bottom: 6px;">${h}</li>`).join('')}
         </ul>
@@ -252,7 +252,7 @@ function initProjectModals() {
 
         <div style="display: flex; gap: 12px;">
           <a href="${data.repo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-            <span>Explore on GitHub</span>
+            <span>Lihat Repositori di GitHub</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
@@ -285,7 +285,7 @@ function initProjectModals() {
 }
 
 /* =========================================================
-   8. Contact Form Handling
+   8. Validasi & Pengiriman Formulir Kontak
    ========================================================= */
 function initContactForm() {
   const form = document.getElementById('contact-form');
@@ -302,7 +302,7 @@ function initContactForm() {
 
     let isValid = true;
 
-    // Validate Name
+    // Validasi Nama
     if (!nameInput.value.trim()) {
       setError(nameInput, true);
       isValid = false;
@@ -310,7 +310,7 @@ function initContactForm() {
       setError(nameInput, false);
     }
 
-    // Validate Email
+    // Validasi Email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(emailInput.value.trim())) {
       setError(emailInput, true);
@@ -319,7 +319,7 @@ function initContactForm() {
       setError(emailInput, false);
     }
 
-    // Validate Subject
+    // Validasi Subjek
     if (!subjectInput.value.trim()) {
       setError(subjectInput, true);
       isValid = false;
@@ -327,7 +327,7 @@ function initContactForm() {
       setError(subjectInput, false);
     }
 
-    // Validate Message
+    // Validasi Pesan
     if (messageInput.value.trim().length < 10) {
       setError(messageInput, true);
       isValid = false;
@@ -337,16 +337,16 @@ function initContactForm() {
 
     if (!isValid) return;
 
-    // Simulate sending state
+    // Simulasi status pengiriman
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Sending...</span>`;
+    submitBtn.innerHTML = `<span>Mengirim Pesan...</span>`;
 
     setTimeout(() => {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
       form.reset();
-      showToast('Thank you! Your message has been sent successfully.', 'success');
+      showToast('Terima kasih! Pesan Anda telah berhasil dikirim.', 'success');
     }, 1000);
   });
 
@@ -362,7 +362,7 @@ function initContactForm() {
 }
 
 /* =========================================================
-   9. Copy Email Functionality
+   9. Fitur Salin Email ke Clipboard
    ========================================================= */
 function initCopyEmail() {
   const copyBtn = document.getElementById('copy-email-btn');
@@ -373,7 +373,7 @@ function initCopyEmail() {
   copyBtn.addEventListener('click', () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(emailToCopy).then(() => {
-        showToast('Email address copied to clipboard!');
+        showToast('Alamat email berhasil disalin ke papan klip!');
       }).catch(() => {
         fallbackCopy(emailToCopy);
       });
@@ -389,12 +389,12 @@ function initCopyEmail() {
     tempInput.select();
     document.execCommand('copy');
     document.body.removeChild(tempInput);
-    showToast('Email address copied to clipboard!');
+    showToast('Alamat email berhasil disalin ke papan klip!');
   }
 }
 
 /* =========================================================
-   10. Back to Top Button
+   10. Tombol Kembali ke Atas
    ========================================================= */
 function initBackToTop() {
   const topBtn = document.getElementById('back-to-top-btn');
@@ -409,7 +409,7 @@ function initBackToTop() {
 }
 
 /* =========================================================
-   Toast Notification Helper
+   Bantuan Notifikasi Toast
    ========================================================= */
 function showToast(message, type = 'normal') {
   const container = document.getElementById('toast-container');
