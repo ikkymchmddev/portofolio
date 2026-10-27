@@ -124,8 +124,9 @@ function initSkillFilters() {
       const filter = btn.getAttribute('data-filter');
 
       skillCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
+        const categoryAttr = card.getAttribute('data-category') || '';
+        const categories = categoryAttr.split(' ');
+        if (filter === 'all' || categories.includes(filter)) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -140,7 +141,7 @@ function initSkillFilters() {
    ========================================================= */
 function initStatCounters() {
   const statsSection = document.getElementById('stats-grid');
-  const counters = document.querySelectorAll('.stat-number');
+  const counters = document.querySelectorAll('.stat-number[data-target]');
   if (!statsSection || counters.length === 0) return;
 
   let hasAnimated = false;
@@ -150,21 +151,30 @@ function initStatCounters() {
       if (entry.isIntersecting && !hasAnimated) {
         hasAnimated = true;
         counters.forEach(counter => {
-          const target = parseInt(counter.getAttribute('data-target') || '0', 10);
-          animateValue(counter, 0, target, 1500);
+          const targetStr = counter.getAttribute('data-target');
+          if (!targetStr) return;
+
+          if (targetStr.includes('.')) {
+            // Animasi angka desimal (misalnya: 3.58)
+            const target = parseFloat(targetStr);
+            animateFloatValue(counter, 0, target, 1600, 2);
+          } else {
+            // Animasi bilangan bulat (misalnya: 100)
+            const target = parseInt(targetStr, 10);
+            animateIntValue(counter, 0, target, 1600);
+          }
         });
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.25 });
 
   observer.observe(statsSection);
 
-  function animateValue(element, start, end, duration) {
+  function animateIntValue(element, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      // Kurva perlambatan halus (easeOutQuad)
       const easedProgress = 1 - (1 - progress) * (1 - progress);
       element.innerText = Math.floor(easedProgress * (end - start) + start);
       if (progress < 1) {
@@ -175,50 +185,69 @@ function initStatCounters() {
     };
     window.requestAnimationFrame(step);
   }
+
+  function animateFloatValue(element, start, end, duration, decimals = 2) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easedProgress = 1 - (1 - progress) * (1 - progress);
+      const current = (easedProgress * (end - start) + start).toFixed(decimals);
+      element.innerText = current;
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        element.innerText = end.toFixed(decimals);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
 }
 
 /* =========================================================
    7. Modal Rincian Proyek (Bahasa Indonesia)
    ========================================================= */
 const PROJECT_DETAILS = {
-  padi: {
-    title: 'PADI: Sistem Pelaporan Infrastruktur Daerah',
-    category: 'Layanan Publik / Smart City',
-    description: 'PADI adalah platform manajemen pengaduan masyarakat secara langsung kepada dinas infrastruktur pemerintah daerah. Dirancang untuk memproses laporan kerusakan jalan dan fasilitas umum lengkap dengan koordinat geolokasi presisi, unggahan media verifikasi, dan alur disposisi dinas otomatis.',
+  ikkytoken: {
+    title: 'IkkyToken dApp: Smart Contracts & Web3',
+    category: 'BLOCKCHAIN & WEB3',
+    description: 'Aplikasi terdesentralisasi (dApp) yang mengintegrasikan Solidity Smart Contracts dengan antarmuka web modern menggunakan Hardhat dan React.js.',
     highlights: [
-      'Peta interaktif berbasis Mapbox GL dengan kemampuan clustering titik laporan',
-      'Kalkulasi SLA penanganan otomatis dan dispatch langsung ke petugas lapangan',
-      'Riwayat audit laporan publik yang transparan dan dapat dipantau pelapor',
-      'Optimasi database PostgreSQL dengan ekstensi spasial PostGIS'
+      'Penyusunan dan pengujian smart contract berbasis Solidity menggunakan framework Hardhat',
+      'Integrasi dompet Web3 (MetaMask) untuk otorisasi dan penandatanganan transaksi on-chain',
+      'Antarmuka pengguna interaktif dan responsif berbasis React.js dengan visualisasi data real-time',
+      'Pengujian fungsionalitas dan keamanan smart contracts sebelum deployment ke jaringan uji (testnet)'
     ],
-    tech: ['Next.js 14', 'Node.js', 'PostgreSQL', 'Mapbox GL', 'Docker', 'TailwindCSS'],
+    tech: ['Solidity', 'Hardhat', 'React.js', 'Ethers.js', 'Web3.js'],
+    repo: 'https://github.com/ikkymchmddev/IkkyToken-DApp',
+    demo: 'https://ikky-token-d-app.vercel.app'
+  },
+  lestari: {
+    title: 'Lestari Pekalongan: Platform Edukasi & 3R',
+    category: 'WEB DEVELOPMENT',
+    description: 'Platform terpadu pengelolaan sampah, edukasi lingkungan, dan marketplace kerajinan daur ulang lokal berbasis CodeIgniter 4.',
+    highlights: [
+      'Arsitektur Model-View-Controller (MVC) yang modular dan terstruktur dengan CodeIgniter 4 & PHP',
+      'Manajemen basis data relasional MySQL untuk katalog kerajinan, pelaporan warga, dan transaksi',
+      'Fitur edukasi interaktif pemilahan sampah 3R (Reduce, Reuse, Recycle) untuk masyarakat lokal',
+      'Validasi form responsif dan navigasi yang dioptimalkan menggunakan JavaScript murni'
+    ],
+    tech: ['PHP', 'CodeIgniter 4', 'MySQL', 'JavaScript', 'HTML5/CSS3'],
     repo: 'https://github.com/ikkymchmddev'
   },
-  webclip: {
-    title: 'WebClip: Peringkas & Kliping Konten Cerdas Berbasis AI',
-    category: 'AI & Alat Produktivitas Developer',
-    description: 'WebClip adalah sistem ekstraksi dan sintesis artikel berbasis kecerdasan buatan. Membersihkan format halaman web dari iklan atau elemen yang mengganggu, lalu memanfaatkan model LLM mutakhir untuk menyajikan poin-poin intisari, ringkasan eksekutif, dan sinkronisasi ke catatan digital.',
+  lspsertify: {
+    title: 'LSP Sertify: Sistem Manajemen Sertifikasi',
+    category: 'SYSTEM INFORMATION',
+    description: 'Sistem informasi untuk pengelolaan dan pengolahan data uji kompetensi serta sertifikasi profesi secara terstruktur dan efisien.',
     highlights: [
-      'Proses ekstraksi teks dan format Markdown bersih dalam waktu di bawah 2 detik',
-      'Prompt LLM yang dapat dikonfigurasi dengan dukungan streaming respons',
-      'Penyimpanan lokal di browser dengan opsi enkripsi data pengguna',
-      'Desain antarmuka minimalis dengan dukungan navigasi cepat keyboard'
+      'Digitalisasi alur registrasi asesi, penugasan asesor, dan penjadwalan uji kompetensi profesi',
+      'Struktur database MySQL terorganisir untuk pengolahan nilai dan riwayat sertifikasi secara cepat',
+      'Antarmuka dashboard informatif dan mudah digunakan dengan Bootstrap dan JavaScript',
+      'Manajemen hak akses berbasis peran (Admin, Asesor, Asesi) demi akurasi dan keamanan data'
     ],
-    tech: ['TypeScript', 'FastAPI', 'Python', 'Gemini API', 'IndexedDB'],
-    repo: 'https://github.com/ikkymchmddev'
-  },
-  accelerator: {
-    title: 'AI Accelerator Integration Hub',
-    category: 'Produksi Backend & Arsitektur Cloud',
-    description: 'Middleware backend berperforma tinggi untuk mengorkestrasi inferensi kecerdasan buatan di berbagai penyedia model LLM. Dilengkapi sistem multi-tenant token billing, peralihan otomatis jika terjadi gangguan penyedia (failover routing), dan caching respons dengan Redis.',
-    highlights: [
-      'Memangkas rata-rata waktu respons API hingga 45% berkat sistem caching agresif',
-      'Peralihan otomatis tanpa downtime saat salah satu penyedia AI mengalami kendala',
-      'Telemetri mendalam dengan pemantauan metrik latensi per permintaan (Prometheus)',
-      'Arsitektur microservices berbasis kontainer Docker dengan skalabilitas elastis'
-    ],
-    tech: ['Node.js', 'Express', 'Redis', 'Docker', 'Prometheus', 'Jest'],
-    repo: 'https://github.com/ikkymchmddev'
+    tech: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
+    repo: 'https://github.com/ikkymchmddev/lsp_sertify',
+    demo: 'https://lsp-sertify.vercel.app'
   }
 };
 
@@ -250,7 +279,7 @@ function initProjectModals() {
           ${data.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
         </div>
 
-        <div style="display: flex; gap: 12px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
           <a href="${data.repo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
             <span>Lihat Repositori di GitHub</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
@@ -258,6 +287,14 @@ function initProjectModals() {
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
           </a>
+          ${data.demo ? `
+          <a href="${data.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+            <span>Kunjungi Live Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>` : ''}
         </div>
       `;
 
@@ -368,7 +405,7 @@ function initCopyEmail() {
   const copyBtn = document.getElementById('copy-email-btn');
   if (!copyBtn) return;
 
-  const emailToCopy = 'contact.ikkydev@gmail.com';
+  const emailToCopy = 'ikkymchmd@gmail.com';
 
   copyBtn.addEventListener('click', () => {
     if (navigator.clipboard) {

@@ -1,8 +1,8 @@
-# Rizqi Muchamad Anafis (Ikky) - Personal Portfolio Website
+# Rizqi Muchamad Anafis Tontowi (Ikky) - Personal Portfolio Website
 
 ![Portfolio Preview](assets/avatar.jpg)
 
-Website portofolio profesional dan modern karya **Rizqi Muchamad Anafis** (*Ikky*), Software Engineer & Full-Stack Architect. Dibangun dengan estetika *glassmorphism*, performa tinggi, responsif di seluruh perangkat, dan mendukung mode gelap/terang (*Dark/Light Mode*).
+Website portofolio profesional dan modern karya **Rizqi Muchamad Anafis Tontowi** (*Ikky*), Software Engineer. Dibangun dengan estetika *glassmorphism*, performa tinggi, responsif di seluruh perangkat, dan mendukung mode gelap/terang (*Dark/Light Mode*).
 
 🌐 **Live Demo Website:** [https://ikkymchmddev.github.io/portofolio/](https://ikkymchmddev.github.io/portofolio/)
 
@@ -12,8 +12,8 @@ Website portofolio profesional dan modern karya **Rizqi Muchamad Anafis** (*Ikky
 - **Desain Modern & Mewah**: Efek frosted glass (*glassmorphism*), gradasi warna neon halus, dan mikro-animasi interaktif.
 - **Dukungan Dark & Light Mode**: Pengalihan tema dinamis yang tersimpan di `localStorage` dan mendeteksi preferensi sistem.
 - **Responsif Sepenuhnya**: Navigasi lancar di smartphone, tablet, maupun layar desktop resolusi tinggi.
-- **Statistik & Filter Interaktif**: Animasi penghitung angka dan filter kategori teknologi (*Frontend, Backend, Tools & Cloud*).
-- **Modal Rincian Proyek**: Penjelasan arsitektur mendalam untuk proyek unggulan (*PADI*, *WebClip*, *AI Accelerator*).
+- **Statistik & Filter Interaktif**: Animasi penghitung angka dan filter kategori teknologi (*Web Development, Blockchain & Web3, Tools & AI*).
+- **Modal Rincian Proyek**: Penjelasan arsitektur mendalam untuk proyek unggulan (*IkkyToken dApp*, *Lestari Pekalongan*, *LSP Sertify*).
 - **Formulir Kontak Real-Time**: Validasi input langsung, indikator status pengiriman, dan notifikasi toast animasi.
 - **Otomasi Deployment**: Dilengkapi alur kerja *GitHub Actions* untuk otomatisasi publikasi ke *GitHub Pages*.
 
@@ -44,7 +44,8 @@ cv/
 ---
 
 ## 👨‍💻 Profil Pengembang
-- **Nama**: Rizqi Muchamad Anafis
-- **Peran**: Software Engineer & Full-Stack Developer
+- **Nama**: Rizqi Muchamad Anafis Tontowi
+- **Pendidikan**: Sarjana Informatika - ITSNU Pekalongan
+- **Peran**: Software Engineer (Web Development & Blockchain Engineering)
 - **GitHub**: [@ikkymchmddev](https://github.com/ikkymchmddev)
-- **Email**: [contact.ikkydev@gmail.com](mailto:contact.ikkydev@gmail.com)
+- **Email**: [ikkymchmd@gmail.com](mailto:ikkymchmd@gmail.com)
