@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>CV ATS - Rizqi Muchamad Anafis Tontowi, S.Kom</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 10mm 14mm 10mm 14mm;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 9pt;
+      line-height: 1.35;
+      color: #111827;
+      background-color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .cv-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 1.5pt solid #1e293b;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .name {
+      font-size: 17pt;
+      font-weight: bold;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+    }
+
+    .title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 4px;
+    }
+
+    .contact-info {
+      font-size: 8.5pt;
+      color: #334155;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 10px;
+    }
+
+    .contact-info a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info span.separator {
+      color: #94a3b8;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 7px;
+    }
+
+    .section-title {
+      font-size: 9.5pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #0f172a;
+      border-bottom: 1pt solid #cbd5e1;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Summary */
+    .summary-text {
+      text-align: justify;
+      color: #1f2937;
+      line-height: 1.38;
+      font-size: 8.75pt;
+    }
+
+    /* Item block */
+    .item-block {
+      margin-bottom: 4px;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .item-title {
+      font-weight: bold;
+      color: #0f172a;
+      font-size: 9pt;
+    }
+
+    .item-date {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .item-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-style: italic;
+      color: #334155;
+      font-size: 8.5pt;
+      margin-bottom: 2px;
+    }
+
+    .item-location {
+      font-style: normal;
+      font-size: 8pt;
+      color: #64748b;
+    }
+
+    /* Bullet points */
+    .bullet-list {
+      margin-left: 15px;
+      margin-top: 1px;
+      margin-bottom: 2px;
+    }
+
+    .bullet-list li {
+      margin-bottom: 1.5px;
+      color: #1f2937;
+      text-align: justify;
+      line-height: 1.32;
+      font-size: 8.75pt;
+    }
+
+    /* Skills */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.75pt;
+    }
+
+    .skills-table td {
+      padding: 1.5px 0;
+      vertical-align: top;
+    }
+
+    .skills-category {
+      font-weight: bold;
+      color: #0f172a;
+      width: 150px;
+      padding-right: 6px;
+    }
+
+    .skills-list {
+      color: #1f2937;
+    }
+
+    @media print {
+      body {
+        background: none;
+      }
+      .cv-container {
+        width: 100%;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="name">Rizqi Muchamad Anafis Tontowi, S.Kom</h1>
+      <div class="title">Software Engineer | Web Developer | Blockchain & Web3 Enthusiast</div>
+      <div class="contact-info">
+        <span>📍 Pekalongan, Jawa Tengah</span>
+        <span class="separator">•</span>
+        <span>✉️ ikkymchmd@gmail.com</span>
+        <span class="separator">•</span>
+        <span>🔗 <a href="https://www.linkedin.com/in/ikkymchmd">linkedin.com/in/ikkymchmd</a></span>
+        <span class="separator">•</span>
+        <span>💻 <a href="https://github.com/ikkymchmddev">github.com/ikkymchmddev</a></span>
+        <span class="separator">•</span>
+        <span>🌐 <a href="https://ikkymchmddev.github.io/portofolio/">ikkymchmddev.github.io/portofolio</a></span>
+      </div>
+    </header>
+
+    <!-- Ringkasan Profesional -->
+    <section class="section">
+      <h2 class="section-title">Ringkasan Profesional</h2>
+      <p class="summary-text">
+        Sarjana Informatika lulusan ITSNU Pekalongan (IPK 3,58/4,00) dengan fokus keahlian di bidang <strong>Web Development</strong> (PHP, CodeIgniter 4, JavaScript, MySQL) dan pengembangan perangkat lunak berbasis <strong>Blockchain</strong> (Solidity, Smart Contracts, Hardhat, Web3 dApp). Memiliki pengalaman magang industri dalam perancangan aplikasi web terstruktur, implementasi basis data relasional, serta pengujian fungsionalitas sistem. Meraih predikat <strong>Mahasiswa Terbaik Non-Akademik</strong> serta aktif dalam kepemimpinan organisasi teknologi kampus. Siap berkontribusi optimal sebagai Software Engineer.
+      </p>
+    </section>
+
+    <!-- Pendidikan -->
+    <section class="section">
+      <h2 class="section-title">Pendidikan</h2>
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">Institut Teknologi dan Sains Nahdlatul Ulama (ITSNU) Pekalongan</span>
+          <span class="item-date">2020 – 2024</span>
+        </div>
+        <div class="item-sub">
+          <span>Sarjana Komputer (S.Kom) - Teknik Informatika | IPK: 3,58 / 4,00</span>
+          <span class="item-location">Kedungwuni, Pekalongan</span>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Predikat Kelulusan</strong>: Lulus Sangat Memuaskan dengan konsentrasi Rekayasa Perangkat Lunak dan Blockchain.</li>
+          <li><strong>Prestasi</strong>: Dianugerahi penghargaan sebagai <em>Mahasiswa Terbaik Non-Akademik</em> atas dedikasi dan kontribusi aktif.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Pengalaman Kerja & Magang -->
+    <section class="section">
+      <h2 class="section-title">Pengalaman Kerja & Magang</h2>
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">PT. Imfea Software Solusindo (ISSO) — Software Engineer Intern</span>
+          <span class="item-date">Februari 2025 – Maret 2025</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Berkontribusi dalam perancangan dan implementasi fitur modul web berbasis PHP dan framework CodeIgniter.</li>
+          <li>Melaksanakan pengujian fungsionalitas fitur (functional testing) dan debugging untuk menjaga stabilitas sistem aplikasi.</li>
+          <li>Mengoptimalkan integrasi komponen antarmuka dengan endpoint backend serta memelihara dokumentasi teknis sistem.</li>
+          <li>Berpartisipasi aktif dalam sesi review kode tim dan manajemen repositori menggunakan Git Version Control.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Proyek Unggulan -->
+    <section class="section">
+      <h2 class="section-title">Proyek Unggulan</h2>
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">IkkyToken dApp: Decentralized Application & Smart Contracts</span>
+          <span class="item-date">Solidity, Hardhat, React.js, Ethers.js</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Menyusun, menguji, dan men-deploy smart contract berbasis <strong>Solidity</strong> menggunakan framework <strong>Hardhat</strong>.</li>
+          <li>Mengintegrasikan otentikasi dompet Web3 (MetaMask) untuk otorisasi dan penandatanganan transaksi on-chain yang aman.</li>
+          <li>Membangun UI interaktif dengan <strong>React.js</strong> untuk pemantauan data token dan interaksi smart contract secara real-time.</li>
+        </ul>
+      </div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">Lestari Pekalongan: Platform Edukasi Lingkungan & Marketplace 3R</span>
+          <span class="item-date">PHP, CodeIgniter 4, MySQL, JavaScript</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Mengembangkan arsitektur Model-View-Controller (MVC) modular untuk platform pengelolaan sampah terpadu dan katalog UMKM.</li>
+          <li>Merancang skema relasional <strong>MySQL</strong> yang efisien untuk data produk daur ulang, pelaporan warga, dan pencatatan transaksi.</li>
+        </ul>
+      </div>
+
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">LSP Sertify: Sistem Manajemen Uji Kompetensi Profesi</span>
+          <span class="item-date">PHP, MySQL, JavaScript, Bootstrap</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Membangun platform digitalisasi administrasi sertifikasi mencakup registrasi asesi, penugasan asesor, dan penjadwalan ujian.</li>
+          <li>Menerapkan Role-Based Access Control (RBAC) bertingkat (Admin, Asesor, Asesi) demi akurasi data penilaian dan keamanan sistem.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Keahlian Teknis -->
+    <section class="section">
+      <h2 class="section-title">Keahlian Teknis (Technical Skills)</h2>
+      <table class="skills-table">
+        <tr>
+          <td class="skills-category">Bahasa Pemrograman:</td>
+          <td class="skills-list">PHP, JavaScript (ES6+), Solidity, HTML5, CSS3, SQL</td>
+        </tr>
+        <tr>
+          <td class="skills-category">Framework & Library:</td>
+          <td class="skills-list">CodeIgniter 4, React.js, Bootstrap, Node.js Environment</td>
+        </tr>
+        <tr>
+          <td class="skills-category">Blockchain & Web3:</td>
+          <td class="skills-list">Smart Contracts, Hardhat, Ethers.js, MetaMask Web3 Integration, OpenZeppelin</td>
+        </tr>
+        <tr>
+          <td class="skills-category">Basis Data & Tools:</td>
+          <td class="skills-list">MySQL, Relational DB Design, Git, GitHub, VS Code, Postman, RESTful API, Vercel</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Pengalaman Organisasi -->
+    <section class="section" style="margin-bottom: 0;">
+      <h2 class="section-title">Kepemimpinan & Organisasi</h2>
+      <div class="item-block">
+        <div class="item-header">
+          <span class="item-title">Wakil Ketua — Himpunan Mahasiswa Informatika (HIMATIKA)</span>
+          <span class="item-date">November 2023 – Agustus 2024</span>
+        </div>
+        <ul class="bullet-list">
+          <li>Mengoordinasikan divisi kerja strategis dan menyelenggarakan program pelatihan teknis IT untuk peningkatan kompetensi coding mahasiswa.</li>
+          <li>Menginisiasi kemitraan kegiatan kampus serta mengelola kolaborasi tim lintas departemen secara adaptif dan terstruktur.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

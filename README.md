@@ -48,4 +48,5 @@ cv/
 - **Pendidikan**: Sarjana Informatika - ITSNU Pekalongan
 - **Peran**: Software Engineer (Web Development & Blockchain Engineering)
 - **GitHub**: [@ikkymchmddev](https://github.com/ikkymchmddev)
+- **LinkedIn**: [Rizqi Muchamad Anafis](https://www.linkedin.com/in/ikkymchmd)
 - **Email**: [ikkymchmd@gmail.com](mailto:ikkymchmd@gmail.com)
