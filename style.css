@@ -1324,6 +1324,10 @@ button, input, textarea {
   border-color: var(--accent-emerald);
 }
 
+.toast.toast-error {
+  border-color: #ef4444;
+}
+
 @keyframes slide-toast {
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }

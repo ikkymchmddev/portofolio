@@ -374,17 +374,47 @@ function initContactForm() {
 
     if (!isValid) return;
 
-    // Simulasi status pengiriman
+    // Status pengiriman nyata ke FormSubmit.co via AJAX
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = `<span>Mengirim Pesan...</span>`;
 
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-      form.reset();
-      showToast('Terima kasih! Pesan Anda telah berhasil dikirim.', 'success');
-    }, 1000);
+    const payload = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      subject: subjectInput.value.trim(),
+      message: messageInput.value.trim(),
+      _subject: `Pesan Portofolio Baru dari ${nameInput.value.trim()}: ${subjectInput.value.trim()}`,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    fetch('https://formsubmit.co/ajax/ikkymchmd@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        form.reset();
+        showToast('Terima kasih! Pesan Anda telah berhasil dikirim ke email saya.', 'success');
+      })
+      .catch(err => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+        console.error('Pengiriman formulir gagal:', err);
+        showToast('Gagal mengirim pesan online. Silakan hubungi langsung via email ikkymchmd@gmail.com', 'error');
+      });
   });
 
   function setError(inputElement, hasError) {
@@ -453,9 +483,11 @@ function showToast(message, type = 'normal') {
   if (!container) return;
 
   const toast = document.createElement('div');
-  toast.className = `toast ${type === 'success' ? 'toast-success' : ''}`;
+  const typeClass = type === 'success' ? 'toast-success' : (type === 'error' ? 'toast-error' : '');
+  const icon = type === 'success' ? '✓' : (type === 'error' ? '✕' : 'ℹ');
+  toast.className = `toast ${typeClass}`.trim();
   toast.innerHTML = `
-    <span>${type === 'success' ? '✓' : 'ℹ'}</span>
+    <span>${icon}</span>
     <span>${message}</span>
   `;
 
@@ -468,5 +500,5 @@ function showToast(message, type = 'normal') {
     setTimeout(() => {
       toast.remove();
     }, 300);
-  }, 3500);
+  }, 4000);
 }
